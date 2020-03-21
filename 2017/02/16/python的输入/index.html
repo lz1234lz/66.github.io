@@ -1,0 +1,933 @@
+<!--
+	作者：Sariay
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      python的输入 | 66insite
+    
+  </title>
+  <meta name="author" content="happy Liang">
+  <meta name="keywords" content="" />
+  <meta name="description" content="66的小站" />
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  
+<link rel="stylesheet" href="/css/Annie.css">
+
+  
+  <!-- jquery -->
+	
+<script src="/plugin/jquery/jquery.min.js"></script>
+
+
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/main.jpeg',
+      randomYouMax: 110,
+      randomYouSrc: 'https://sariay.github.io/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: false
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+	<body>
+		<!-- Preloader -->
+
+
+<!-- header -->
+<header class="fixbackground bg-pan-br">
+	<div class="mask">
+		<!-- motto -->
+		<div class="h-body">	
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
+			</a>
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><span>0.0%</span></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			「python的输入」
+		
+	</p>
+
+	
+	
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<span class="logo"> 
+			<img src="/img/logo.png">
+		</span>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	
+	<div class="nav-body">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+</ul>
+	</div>
+	
+	<div class="nav-footer">
+		<ul id="global-social">
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-one"><span class="path1"></span><span class="path2"></span></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-zhihu"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-github"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-sina-weibo "></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-pinterest2"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-instagram"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-twitter"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<span class="icon-rss"></span>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+		<div class="article-title">
+			
+	<a href="/2017/02/16/python%E7%9A%84%E8%BE%93%E5%85%A5/" itemprop="url">
+		python的输入
+	</a>
+
+		</div>
+
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
+
+
+
+
+	更新于
+
+	<a href="/2017/02/16/python%E7%9A%84%E8%BE%93%E5%85%A5/" itemprop="url">
+		<time datetime="2017-02-16T02:05:08.000Z" itemprop="dateUpdated">
+	  		2020-02-23
+	  </time>
+	</a> 
+
+
+
+			</span>
+			<span>
+				
+	<i class="icon-price-tags"></i>
+	
+		<a href="/tags/python/" class=" ">
+			python
+		</a>
+	
+		<a href="/tags/%E5%9F%BA%E7%A1%80/" class=" ">
+			基础
+		</a>
+	
+		
+			</span>
+			
+			
+
+
+
+		</div>
+
+		<div class="article-content" id="article-content">
+			<h2 id="python输入-读取命令行"><a href="#python输入-读取命令行" class="headerlink" title="python输入-读取命令行"></a>python输入-读取命令行</h2><h3 id="获取简单命令行数据"><a href="#获取简单命令行数据" class="headerlink" title="获取简单命令行数据"></a>获取简单命令行数据</h3><p>Python启动时，命令行放置在列表<code>sys.argv</code>中，第一个元素是脚本的名称，后续项是启动脚本时添加的命令。<br>编写脚本 <code>sysoption.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">option = sys.argv</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> option:</span><br><span class="line">    print(item)</span><br></pre></td></tr></table></figure>
+
+<p>当使用<code>python sysoption -d -s</code>执行上述脚本时会得到以下输出结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sysoption.py</span><br><span class="line">-d</span><br><span class="line">-s</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用optparse获取复杂命令行"><a href="#使用optparse获取复杂命令行" class="headerlink" title="使用optparse获取复杂命令行"></a>使用optparse获取复杂命令行</h3><p>一般情况下，我们使用optparse会使用到四个选项</p>
+<ol>
+<li><p><code>action</code><br>action指明我们的指令的存储方式，一般有<code>store</code> <code>sotre_true</code> <code>store_false</code>三种情况</p>
+<ol>
+<li><p>sotre 就是将指令后方的参数值和指令关键字关联</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#例如使用</span></span><br><span class="line">-s <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line"><span class="comment">#我们就可以通过-s获取到192.168.1.1这个参数</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>sotre_true</code> 和<code>store_false</code>只与是否有这个指令相关，指令后方的值不影响指令的结果。</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#例如使用</span></span><br><span class="line">-p <span class="number">8000</span></span><br><span class="line"><span class="comment">#指令会获取到True或者False，并不会获取到8000这个值，有-p即为True反之则为False</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p><code>dest</code><br> dest是我们获取值的存储名，会根据action的设置获取到不同的值</p>
+</li>
+<li><p><code>type</code><br> type指定获取值的类型，有<code>&quot;string&quot;, &quot;int&quot;, &quot;long&quot;, &quot;float&quot;, &quot;complex&quot;, &quot;choice&quot;</code>多种选项。</p>
+</li>
+<li><p><code>help</code><br> help就是我们指令的说明文档了</p>
+</li>
+</ol>
+<p>例子：编写opt.py文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> optparse</span><br><span class="line">parse = optparse.OptionParser()</span><br><span class="line">parse.add_option(<span class="string">"-p"</span>,<span class="string">"--port"</span>,type=<span class="string">"int"</span>,action=<span class="string">"store"</span>,dest=<span class="string">"port"</span>,help=<span class="string">"server port"</span>)</span><br><span class="line">parse.add_option(<span class="string">"-s"</span>,<span class="string">"--server"</span>,type=<span class="string">"string"</span>,action=<span class="string">"store"</span>,dest=<span class="string">"server"</span>,help=<span class="string">"server ip"</span>)</span><br><span class="line">parse.add_option(<span class="string">'-i'</span>,<span class="string">"--info"</span>,action=<span class="string">"store_true"</span>,dest=<span class="string">"info"</span>,help=<span class="string">"server info"</span>)</span><br><span class="line">parse.add_option(<span class="string">'-c'</span>,<span class="string">"--cancel"</span>,action=<span class="string">"store_false"</span>,dest=<span class="string">"info"</span>,help=<span class="string">"server cancel"</span>)</span><br><span class="line">opts, args = parse.parse_args()</span><br><span class="line">print(opts)</span><br><span class="line">print(args)</span><br><span class="line">print(opts.server)</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>python opt.py -h</code>我们可以获取到当前脚本的帮助信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Usage: optparsetest.py [options]</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line">  -h, --help            show this help message <span class="keyword">and</span> exit</span><br><span class="line">  -p PORT, --port=PORT  server port</span><br><span class="line">  -s SERVER, --server=SERVER</span><br><span class="line">                        server ip</span><br><span class="line">  -i, --info            server info</span><br><span class="line">  -c, --cancel          server cancel</span><br></pre></td></tr></table></figure>
+
+<p>使用命令<code>python .\opt.py my -p &#39;111&#39; -s 111 -i test</code>运行脚本<br>我们可以获得结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#opts获取的时指令值，agrs获取的是除了指令外其他值</span></span><br><span class="line"><span class="comment">#使用opts值时只需要opts.dest即可</span></span><br><span class="line">&#123;<span class="string">'port'</span>: <span class="number">111</span>, <span class="string">'server'</span>: <span class="string">'111'</span>, <span class="string">'info'</span>: <span class="literal">True</span>&#125;</span><br><span class="line">[<span class="string">'my'</span>, <span class="string">'test'</span>]</span><br><span class="line"><span class="number">111</span></span><br><span class="line">my</span><br></pre></td></tr></table></figure>
+
+<h2 id="python-输入input"><a href="#python-输入input" class="headerlink" title="python 输入input"></a>python 输入input</h2><h3 id="获取input的值"><a href="#获取input的值" class="headerlink" title="获取input的值"></a>获取input的值</h3><p>使用input函数时在括号内填充提示信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">msg = input(<span class="string">'请输入信息'</span>)</span><br><span class="line"><span class="comment">#msg 获取的是字符串信息</span></span><br><span class="line">msg = <span class="string">'test'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据转换"><a href="#数据转换" class="headerlink" title="数据转换"></a>数据转换</h3><ol>
+<li><p>使用<code>eval</code>函数</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">msg = eval(input())</span><br><span class="line"><span class="comment">#输入 1 时</span></span><br><span class="line">type(msg)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">int</span>'&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>强制类型转换</p>
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">int(x)</td>
+<td align="center">将x转换为一个整数</td>
+</tr>
+<tr>
+<td align="left">long(x)</td>
+<td align="center">将x转换为一个长整数</td>
+</tr>
+<tr>
+<td align="left">float(x)</td>
+<td align="center">将x转换到一个浮点数</td>
+</tr>
+<tr>
+<td align="left">complex(real)</td>
+<td align="center">创建一个复数</td>
+</tr>
+<tr>
+<td align="left">tuple(s)</td>
+<td align="center">将序列 s 转换为一个元组</td>
+</tr>
+<tr>
+<td align="left">list(s)</td>
+<td align="center">将序列 s 转换为一个列表</td>
+</tr>
+<tr>
+<td align="left">chr(x)</td>
+<td align="center">将一个整数转换为一个字符</td>
+</tr>
+<tr>
+<td align="left">unichr(x)</td>
+<td align="center">将一个整数转换为Unicode字符</td>
+</tr>
+<tr>
+<td align="left">ord(x)</td>
+<td align="center">将一个字符转换为它的整数值</td>
+</tr>
+<tr>
+<td align="left">hex(x)</td>
+<td align="center">将一个整数转换为一个十六进制字符串</td>
+</tr>
+<tr>
+<td align="left">oct(x)</td>
+<td align="center">将一个整数转换为一个八进制字符串</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>使用<code>map</code>函数处理多个输入</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i,j = map(int,input().split())</span><br><span class="line">print(i)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+	
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/cart_cover.jpg"></div>
+
+		<!-- relate post, comment...-->
+		<div class="investment-container">
+			<div class="investment-header">
+				<div class="investment-title-1">
+					<div class="on">相关文章</div>
+					<div>评论</div>
+					<div>分享</div>
+				</div>
+				<div class="investment-title-2">	            
+					
+	<span>
+		<a id="totop-post-page">返回顶部</a>
+		
+			<a href="/2017/05/23/python%E8%A3%85%E9%A5%B0%E5%99%A8/" title="python装饰器" rel="prev">
+				&laquo;上一篇
+			</a>
+		
+			
+	</span>
+
+
+      		
+				</div>	
+			</div>
+			
+			<div class="investment-content">
+				<div class="investment-content-list">
+					
+
+<div class="relate-post">
+	
+		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/26/python%E5%8D%8F%E7%A8%8B/" title="python协程">
+								python协程			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 26日, 2020				
+							</p>
+							<p class="relate-post-content">
+								协程由于由程序主动控制切换，没有线程切换的开销，所以执行效率极高。对于IO密集型任务非常适用，如果是cpu密集型，推荐多进程+协程的方式。
+生成器而Python对协程的支持，是通过Generator实现的，协程是遵循某些规则的生成器。...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/26/python%E5%8D%8F%E7%A8%8B/" title="python协程">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python协程"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/23/python%E7%BA%BF%E7%A8%8B%E3%80%81%E8%BF%9B%E7%A8%8B/" title="python线程、进程和协程">
+								python线程、进程和协程			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2020				
+							</p>
+							<p class="relate-post-content">
+								python线程有很多的场景中的事情是同时进行的，比如刷微博的时候我们可以听歌；在程序中如果我们顺序执行程序的话，程序智能按照先后顺序进行执行，如果启用多线程，我们的程序可以同时执行多个函数，变相时节约时间的。
+单线程情况下12345...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/23/python%E7%BA%BF%E7%A8%8B%E3%80%81%E8%BF%9B%E7%A8%8B/" title="python线程、进程和协程">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python线程、进程和协程"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2017/05/23/python%E8%A3%85%E9%A5%B0%E5%99%A8/" title="python装饰器">
+								python装饰器			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 23日, 2017				
+							</p>
+							<p class="relate-post-content">
+								python中的闭包了解装饰器首先我们需要知道python的闭包
+1、何为闭包
+闭包就是能够读取其他函数内部变量的函数。例如在javascript中，只有函数内部的子函数才能读取局部变量，所以闭包可以理解成“定义在一个函数内部的函数“...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2017/05/23/python%E8%A3%85%E9%A5%B0%E5%99%A8/" title="python装饰器">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python装饰器"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2018/02/16/python%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" title="python数学运算">
+								python数学运算			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 16日, 2018				
+							</p>
+							<p class="relate-post-content">
+								python数学运算
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2018/02/16/python%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" title="python数学运算">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python数学运算"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/03/21/hello-world/" title="Hello World">
+								Hello World			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 21日, 2020				
+							</p>
+							<p class="relate-post-content">
+								Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using ...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/03/21/hello-world/" title="Hello World">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="Hello World"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/03/21/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" title="将wsl升级为wsl2">
+								将wsl升级为wsl2			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 21日, 2020				
+							</p>
+							<p class="relate-post-content">
+								WSL是什么
+Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行原生Linux二进制可执行文件（ELF格式）的兼容层。它是由微软与Canonical公司合作开发，其目标是使纯正的...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/03/21/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" title="将wsl升级为wsl2">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="将wsl升级为wsl2"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/23/DRF%E4%B9%8Bserializer/" title="DRF之serializer">
+								DRF之serializer			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2020				
+							</p>
+							<p class="relate-post-content">
+								
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/23/DRF%E4%B9%8Bserializer/" title="DRF之serializer">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="DRF之serializer"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/23/jwt-token/" title="jwt-token">
+								jwt-token			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2020				
+							</p>
+							<p class="relate-post-content">
+								
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/23/jwt-token/" title="jwt-token">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="jwt-token"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/23/djangoRestframework/" title="djangoRestframework">
+								djangoRestframework			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2020				
+							</p>
+							<p class="relate-post-content">
+								
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/23/djangoRestframework/" title="djangoRestframework">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="djangoRestframework"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/23/celery/" title="celery">
+								celery			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2020				
+							</p>
+							<p class="relate-post-content">
+								
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/23/celery/" title="celery">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="celery"/>
+							</a>
+						</div>
+					</li>												
+			
+		</ul>
+	
+</div>	
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-comment">
+
+	
+		<div class="config-info">
+			Please check the parameter of <b>comment</b> in config.yml of hexo-theme-Annie!
+		</div>	
+	
+
+</div>
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-share">
+	
+	
+
+		
+			
+			<!-- socialShare share -->
+			<div class="social-share"></div>
+
+<!--  css & js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+			
+		
+		
+	
+</div>
+
+
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<!-- show math formula -->
+
+
+
+	 
+	
+<script src="/plugin/clipboard/clipboard.js"></script>
+
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2017 - 2020, content by Sariay. All Rights Reserved.
+			
+			
+				<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+
+
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
+		</p>
+		<p><a href="http://beian.miit.gov.cn" target="_blank" rel="noopener">冀ICP备19008623号-1</a></p>
+	</div>		
+</footer>
+		
+
+<!-- love effect -->
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+  
+
+
+
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/main.js"></script>
+
+	</body>	
+</html>

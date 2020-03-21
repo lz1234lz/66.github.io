@@ -1,0 +1,881 @@
+<!--
+	作者：Sariay
+	时间：2018-08-26
+	描述：There may be a bug, but don't worry, Qiling(器灵) says that it can work normally! aha!
+-->
+<!DOCTYPE html>
+<html class="html-loading">
+		
+
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <title>
+    
+      python协程 | 66insite
+    
+  </title>
+  <meta name="author" content="happy Liang">
+  <meta name="keywords" content="" />
+  <meta name="description" content="66的小站" />
+	<!-- favicon -->
+  <link rel="shortcut icon" href="/img/favicon.ico">
+
+  <!-- css -->
+  
+<link rel="stylesheet" href="/css/Annie.css">
+
+  
+  <!-- jquery -->
+	
+<script src="/plugin/jquery/jquery.min.js"></script>
+
+
+<script>
+    const CONFIG_BGIMAGE = {
+      mode: 'normal',
+      normalSrc: '/img/main.jpeg',
+      randomYouMax: 110,
+      randomYouSrc: 'https://sariay.github.io/Random-img/',
+	  randomOtherSrc: 'https://api.berryapi.net/?service=App.Bing.Images&day=-0',
+	  preloaderEnable: false
+    }
+	
+    const CONFIG_LEACLOUD_COUNT = {
+      enable: false,
+	  appId: 'AU8...',
+	  appKey: '4cU...',
+	  serverURLs: 'http' || ' '
+    }
+  </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+	<body>
+		<!-- Preloader -->
+
+
+<!-- header -->
+<header class="fixbackground bg-pan-br">
+	<div class="mask">
+		<!-- motto -->
+		<div class="h-body">	
+			
+		</div>
+		
+		<!-- others: such as time... -->			
+		<div class="h-footer">
+			<a href="javascript:;" id="read-more" class="scroll-down">
+				<span class="icon-anchor1 animation-scroll-down"></span>
+			</a>
+		</div>
+	</div>
+</header>
+
+<div id="navigation-hide">
+	<!-- Progress bar -->
+	<div id="progress-bar"></div>
+
+	<!-- Progress percent -->
+	<div id="progress-percentage"><span>0.0%</span></div>
+
+	<div class="toc-switch"><span class="switch-button">目录</span></div>
+
+	<!-- Page title -->
+	<p>
+		
+			「python协程」
+		
+	</p>
+
+	
+	
+
+	<!-- Nav trigger for navigation-H-->
+	<a class="nav-trigger"><span></span></a>
+</div>
+
+<!-- Navigation in div(id="navigation-H") -->
+<nav class="nav-container" id="cd-nav">
+	<div class="nav-header">
+		<span class="logo"> 
+			<img src="/img/logo.png">
+		</span>
+		<a href="javascript:;" class="nav-close"></a>
+	</div>
+	
+	<div class="nav-body">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+</ul>
+	</div>
+	
+	<div class="nav-footer">
+		<ul id="global-social">
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-one"><span class="path1"></span><span class="path2"></span></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-zhihu"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-github"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-sina-weibo "></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-pinterest2"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-instagram"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://github.com/" target="_blank">
+				<span class="icon-twitter"></span>
+			</a>
+		</li>
+	
+		<li>
+			<a href="/atom.xml" target="_blank">
+				<span class="icon-rss"></span>
+			</a>
+		</li>
+			
+</ul>
+
+	</div>
+</nav>
+			
+		<!--main-->
+		<main>
+			<!--
+	时间：2018-11-17
+	描述：
+		插件名称：katelog.min.js
+		插件作者：KELEN
+		插件来源: https://github.com/KELEN/katelog
+-->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
+	 
+
+<div class="layout-post">
+	<div id="layout-post">
+		<div class="article-title">
+			
+	<a href="/2020/02/26/python%E5%8D%8F%E7%A8%8B/" itemprop="url">
+		python协程
+	</a>
+
+		</div>
+
+		<div class="article-meta">
+			<span>
+				<i class="icon-calendar1"></i>
+				
+				
+
+
+
+
+	更新于
+
+	<a href="/2020/02/26/python%E5%8D%8F%E7%A8%8B/" itemprop="url">
+		<time datetime="2020-02-26T06:46:06.000Z" itemprop="dateUpdated">
+	  		2020-03-13
+	  </time>
+	</a> 
+
+
+
+			</span>
+			<span>
+				
+	<i class="icon-price-tags"></i>
+	
+		<a href="/tags/python/" class=" ">
+			python
+		</a>
+	
+		<a href="/tags/%E5%9F%BA%E7%A1%80/" class=" ">
+			基础
+		</a>
+	
+		
+			</span>
+			
+			
+
+
+
+		</div>
+
+		<div class="article-content" id="article-content">
+			<p>协程由于由程序主动控制切换，没有线程切换的开销，所以执行效率极高。对于IO密集型任务非常适用，如果是cpu密集型，推荐多进程+协程的方式。</p>
+<h3 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h3><p>而Python对协程的支持，是通过Generator实现的，协程是遵循某些规则的生成器。因此，我们在了解协程之前，我们先要学习生成器。</p>
+<p>最简单的生成器就是 <code>l = (x for x in range(10))</code>, 通过<code>type(l)</code>我们可以看到<code>&lt;class &#39;generator&#39;&gt;</code>.</p>
+<h4 id="重写类方法"><a href="#重写类方法" class="headerlink" title="重写类方法"></a>重写类方法</h4><p>当类中的<code>__iter__</code>方法得到实现时，这个类就可以成为生成器，我们要通过<code>__iter__</code>返回一个可迭代对象。然后通过<code>__next__</code>实现迭代</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fab</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, max)</span>:</span></span><br><span class="line">        self.max = max</span><br><span class="line">        self.n, self.a, self.b = <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__next__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.n &lt; self.max:</span><br><span class="line">            r = self.b</span><br><span class="line">            self.a, self.b = self.b, self.a + self.b</span><br><span class="line">            self.n = self.n + <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> r</span><br><span class="line">        <span class="keyword">raise</span> StopIteration()</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过yeild构造生成器"><a href="#通过yeild构造生成器" class="headerlink" title="通过yeild构造生成器"></a>通过yeild构造生成器</h4><p>使用了yield关键字的函数不再是函数，而是生成器。（使用了yield的函数就是生成器）</p>
+<h5 id="yield关键字有两点作用"><a href="#yield关键字有两点作用" class="headerlink" title="yield关键字有两点作用"></a>yield关键字有两点作用</h5><ol>
+<li><p>保存当前运行状态（断点），然后暂停执行，即将生成器（函数）挂起,将yield关键字后面表达式的值作为返回值返回，此时可以理解为起到了return的作用</p>
+</li>
+<li><p>可以使用next()函数让生成器从断点处继续执行，即唤醒生成器（函数）<br>Python3中的生成器可以使用return返回最终运行的返回值，而Python2中的生成器不允许使用return返回一个返回值（即可以使用return从生成器中退出，但return后不能有任何表达式）</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FabYield</span><span class="params">(max)</span>:</span></span><br><span class="line">    n, a, b = <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> n &lt; max:</span><br><span class="line">        <span class="keyword">yield</span> b</span><br><span class="line">        a, b = b, a+b</span><br><span class="line">        n += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="使用send唤醒"><a href="#使用send唤醒" class="headerlink" title="使用send唤醒"></a>使用send唤醒</h5><p>除了可以用<code>next()</code> 唤醒外，还可以通过<code>send()</code>唤醒</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Say</span><span class="params">()</span>:</span></span><br><span class="line">    m = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        msg = <span class="keyword">yield</span> m</span><br><span class="line">        print(msg)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    say = Say()</span><br><span class="line">    say.send(<span class="string">'hello world'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h3><p>协程是python个中另外一种实现多任务的方式，只不过比线程更小占用更小执行单元</p>
+<h4 id="使用yield实现协程"><a href="#使用yield实现协程" class="headerlink" title="使用yield实现协程"></a>使用yield实现协程</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">work1</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(<span class="string">"----work1---"</span>)</span><br><span class="line">        <span class="keyword">yield</span></span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">work2</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        print(<span class="string">"----work2---"</span>)</span><br><span class="line">        <span class="keyword">yield</span></span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    w1 = work1()</span><br><span class="line">    w2 = work2()</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        next(w1)</span><br><span class="line">        next(w2)</span><br><span class="line"></span><br><span class="line">运行结果：</span><br><span class="line"></span><br><span class="line">----work1---</span><br><span class="line">----work2---</span><br><span class="line">----work1---</span><br><span class="line">----work2---</span><br><span class="line">----work1---</span><br><span class="line">----work2---</span><br><span class="line">----work1---</span><br><span class="line">----work2---</span><br><span class="line">----work1---</span><br><span class="line">----work2---</span><br><span class="line">----work1---</span><br><span class="line">----work2---</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用greenlet实现协程"><a href="#使用greenlet实现协程" class="headerlink" title="使用greenlet实现协程"></a>使用greenlet实现协程</h4><blockquote>
+<p>pip install grennlet</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> greenlet <span class="keyword">import</span> greenlet</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">work1</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'work1'</span>)</span><br><span class="line">    wk2.switch()</span><br><span class="line">    print(<span class="string">'from work2'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">work2</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'work2'</span>)</span><br><span class="line">    wk1.switch()</span><br><span class="line">    print(<span class="string">'from'</span>)</span><br><span class="line"></span><br><span class="line">wk1 = greenlet(work1)</span><br><span class="line">wk2 = greenlet(work2)</span><br><span class="line"></span><br><span class="line">wk1.switch()</span><br><span class="line"></span><br><span class="line">运行结果</span><br><span class="line"></span><br><span class="line">work1</span><br><span class="line">work2</span><br><span class="line"><span class="keyword">from</span> work2</span><br></pre></td></tr></table></figure>
+
+<center><font color="#3da742" size="5">一、标题</font></center></br>
+
+<h4 id="使用gevent实现自动切换"><a href="#使用gevent实现自动切换" class="headerlink" title="使用gevent实现自动切换"></a>使用gevent实现自动切换</h4><p>greenlet需要手动切换，python还有一个比greenlet更强大的并且能够自动切换任务的模块gevent</p>
+<blockquote>
+<p>pip install gevent</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gevent_fuc</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        print(gevent.getcurrent(), i)</span><br><span class="line"></span><br><span class="line">g1 = gevent.spawn(gevent_fuc, <span class="number">5</span>)</span><br><span class="line">g2 = gevent.spawn(gevent_fuc, <span class="number">5</span>)</span><br><span class="line">g1.join()</span><br><span class="line">g2.join()</span><br><span class="line"></span><br><span class="line">运行结果</span><br><span class="line"></span><br><span class="line">&lt;Greenlet at <span class="number">0x1c10a2d7378</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">0</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1c10a2d7378</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">1</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1c10a2d7378</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">2</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1c10a2d7378</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">3</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1c10a2d7378</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">4</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1c10a2d7488</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">0</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1c10a2d7488</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">1</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1c10a2d7488</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">2</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1c10a2d7488</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">3</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1c10a2d7488</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="使用gevent-sleep模拟耗时操作"><a href="#使用gevent-sleep模拟耗时操作" class="headerlink" title="使用gevent.sleep模拟耗时操作"></a>使用gevent.sleep模拟耗时操作</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gevent_fuc</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        print(gevent.getcurrent(), i)</span><br><span class="line">        gevent.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">g1 = gevent.spawn(gevent_fuc, <span class="number">5</span>)</span><br><span class="line">g2 = gevent.spawn(gevent_fuc, <span class="number">5</span>)</span><br><span class="line">g1.join()</span><br><span class="line">g2.join()</span><br><span class="line"></span><br><span class="line">运行结果</span><br><span class="line"></span><br><span class="line">&lt;Greenlet at <span class="number">0x1b8d13a6378</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">0</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1b8d13a6488</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">0</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1b8d13a6378</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">1</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1b8d13a6488</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">1</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1b8d13a6378</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">2</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1b8d13a6488</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">2</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1b8d13a6378</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">3</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1b8d13a6488</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">3</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1b8d13a6378</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">4</span></span><br><span class="line">&lt;Greenlet at <span class="number">0x1b8d13a6488</span>: gevent_fuc(<span class="number">5</span>)&gt; <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到<code>gevent</code>模块在遇到耗时操作时可以自动选择程序的运行</p>
+<h4 id="使用猴子补丁优化程序"><a href="#使用猴子补丁优化程序" class="headerlink" title="使用猴子补丁优化程序"></a>使用猴子补丁优化程序</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> monkey</span><br><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># 有耗时操作时需要</span></span><br><span class="line">monkey.patch_all()  <span class="comment"># 将程序中用到的耗时操作的代码，换为gevent中自己实现的模块</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">coroutine_work</span><span class="params">(coroutine_name)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">        print(coroutine_name, i)</span><br><span class="line">        time.sleep(random.random())</span><br><span class="line"></span><br><span class="line">gevent.joinall([</span><br><span class="line">        gevent.spawn(coroutine_work, <span class="string">"work1"</span>),</span><br><span class="line">        gevent.spawn(coroutine_work, <span class="string">"work2"</span>)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用asyncio模块"><a href="#使用asyncio模块" class="headerlink" title="使用asyncio模块"></a>使用asyncio模块</h4><p>asyncio的编程模型就是一个消息循环。我们从asyncio模块中直接获取一个EventLoop的引用，然后把需要执行的协程扔到EventLoop中执行，就实现了异步IO。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="meta">@asyncio.coroutine</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'Hello world! (%s)'</span> % threading.currentThread())</span><br><span class="line">    <span class="keyword">yield</span> <span class="keyword">from</span> asyncio.sleep(<span class="number">1</span>)</span><br><span class="line">    print(<span class="string">'Hello again! (%s)'</span> % threading.currentThread())</span><br><span class="line"></span><br><span class="line">loop = asyncio.get_event_loop()</span><br><span class="line">tasks = [hello(), hello()]</span><br><span class="line">loop.run_until_complete(asyncio.wait(tasks))</span><br><span class="line">loop.close()</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用async和await"><a href="#使用async和await" class="headerlink" title="使用async和await"></a>使用async和await</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'Hello world! (%s)'</span> % threading.currentThread())</span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">1</span>)</span><br><span class="line">    print(<span class="string">'Hello again! (%s)'</span> % threading.currentThread())</span><br><span class="line"></span><br><span class="line">loop = asyncio.get_event_loop()</span><br><span class="line">tasks = [hello(), hello()]</span><br><span class="line">loop.run_until_complete(asyncio.wait(tasks))</span><br><span class="line">loop.close()</span><br></pre></td></tr></table></figure>
+	
+		</div>
+		
+		<div id="current-post-cover" data-scr="/img/cart_cover.jpg"></div>
+
+		<!-- relate post, comment...-->
+		<div class="investment-container">
+			<div class="investment-header">
+				<div class="investment-title-1">
+					<div class="on">相关文章</div>
+					<div>评论</div>
+					<div>分享</div>
+				</div>
+				<div class="investment-title-2">	            
+					
+	<span>
+		<a id="totop-post-page">返回顶部</a>
+		
+			<a href="/2020/03/21/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" title="将wsl升级为wsl2" rel="prev">
+				&laquo;上一篇
+			</a>
+		
+		
+			<a href="/2020/02/23/DRF%E4%B9%8Bserializer/" title="DRF之serializer" rel="next">
+				下一篇&raquo;
+			</a>
+			
+	</span>
+
+
+      		
+				</div>	
+			</div>
+			
+			<div class="investment-content">
+				<div class="investment-content-list">
+					
+
+<div class="relate-post">
+	
+		<ul>
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/23/python%E7%BA%BF%E7%A8%8B%E3%80%81%E8%BF%9B%E7%A8%8B/" title="python线程、进程和协程">
+								python线程、进程和协程			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2020				
+							</p>
+							<p class="relate-post-content">
+								python线程有很多的场景中的事情是同时进行的，比如刷微博的时候我们可以听歌；在程序中如果我们顺序执行程序的话，程序智能按照先后顺序进行执行，如果启用多线程，我们的程序可以同时执行多个函数，变相时节约时间的。
+单线程情况下12345...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/23/python%E7%BA%BF%E7%A8%8B%E3%80%81%E8%BF%9B%E7%A8%8B/" title="python线程、进程和协程">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python线程、进程和协程"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2017/05/23/python%E8%A3%85%E9%A5%B0%E5%99%A8/" title="python装饰器">
+								python装饰器			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 23日, 2017				
+							</p>
+							<p class="relate-post-content">
+								python中的闭包了解装饰器首先我们需要知道python的闭包
+1、何为闭包
+闭包就是能够读取其他函数内部变量的函数。例如在javascript中，只有函数内部的子函数才能读取局部变量，所以闭包可以理解成“定义在一个函数内部的函数“...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2017/05/23/python%E8%A3%85%E9%A5%B0%E5%99%A8/" title="python装饰器">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python装饰器"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2017/02/16/python%E7%9A%84%E8%BE%93%E5%85%A5/" title="python的输入">
+								python的输入			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 16日, 2017				
+							</p>
+							<p class="relate-post-content">
+								python输入-读取命令行获取简单命令行数据Python启动时，命令行放置在列表sys.argv中，第一个元素是脚本的名称，后续项是启动脚本时添加的命令。编写脚本 sysoption.py
+1234import sysoption ...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2017/02/16/python%E7%9A%84%E8%BE%93%E5%85%A5/" title="python的输入">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python的输入"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2018/02/16/python%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" title="python数学运算">
+								python数学运算			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 16日, 2018				
+							</p>
+							<p class="relate-post-content">
+								python数学运算
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2018/02/16/python%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" title="python数学运算">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python数学运算"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/03/21/hello-world/" title="Hello World">
+								Hello World			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 21日, 2020				
+							</p>
+							<p class="relate-post-content">
+								Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using ...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/03/21/hello-world/" title="Hello World">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="Hello World"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/03/21/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" title="将wsl升级为wsl2">
+								将wsl升级为wsl2			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 21日, 2020				
+							</p>
+							<p class="relate-post-content">
+								WSL是什么
+Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行原生Linux二进制可执行文件（ELF格式）的兼容层。它是由微软与Canonical公司合作开发，其目标是使纯正的...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/03/21/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" title="将wsl升级为wsl2">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="将wsl升级为wsl2"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/23/DRF%E4%B9%8Bserializer/" title="DRF之serializer">
+								DRF之serializer			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2020				
+							</p>
+							<p class="relate-post-content">
+								
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/23/DRF%E4%B9%8Bserializer/" title="DRF之serializer">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="DRF之serializer"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/23/jwt-token/" title="jwt-token">
+								jwt-token			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2020				
+							</p>
+							<p class="relate-post-content">
+								
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/23/jwt-token/" title="jwt-token">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="jwt-token"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/23/djangoRestframework/" title="djangoRestframework">
+								djangoRestframework			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2020				
+							</p>
+							<p class="relate-post-content">
+								
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/23/djangoRestframework/" title="djangoRestframework">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="djangoRestframework"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/23/celery/" title="celery">
+								celery			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2020				
+							</p>
+							<p class="relate-post-content">
+								
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/23/celery/" title="celery">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="celery"/>
+							</a>
+						</div>
+					</li>												
+			
+		</ul>
+	
+</div>	
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-comment">
+
+	
+		<div class="config-info">
+			Please check the parameter of <b>comment</b> in config.yml of hexo-theme-Annie!
+		</div>	
+	
+
+</div>
+				</div>
+				<div class="investment-content-list">
+					<div class="layout-share">
+	
+	
+
+		
+			
+			<!-- socialShare share -->
+			<div class="social-share"></div>
+
+<!--  css & js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+			
+		
+		
+	
+</div>
+
+
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<!-- show math formula -->
+
+
+
+	 
+	
+<script src="/plugin/clipboard/clipboard.js"></script>
+
+	<script>
+		// Copy code !
+	    function preprocessing() {
+	        $("#article-content .highlight").each(function() {
+	            $(this).wrap('<div id="post-code"></div>');
+	        })
+
+	        $("#article-content #post-code").each(function() {
+	            $(this).prepend('<nav class="copy-nav"><span><i class="code-language"></i></span></nav>');
+	        })
+
+	        $("#article-content .copy-nav").each(function() {
+	            let languageClass = $(this).next().attr('class'),
+	                language = ((languageClass.length > 9) && (languageClass != null)) ? languageClass.substr(10) : "none"; //why 9? Need to check language?
+
+	            $(this).find('.code-language').text(language);
+	            $(this).append('<span class="copy-btn icon-paste"></span>');
+	        });
+	    }
+
+		function copy() {
+		    $('#article-content #post-code').each(function(i) {
+		        let codeCopyId = 'codeCopy-' + i;
+
+		        let codeNode = $(this).find('.code'),
+		            copyButton = $(this).find('.copy-btn');
+
+		        codeNode.attr('id', codeCopyId);
+		        copyButton.attr('data-clipboard-target-id', codeCopyId);
+		    })
+   
+			let clipboard = new ClipboardJS('.copy-btn', {
+					target: function(trigger) {
+						return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+					}
+		      	});
+
+			//pure js
+			function showTooltip(elem, msg) {		   
+				elem.setAttribute('aria-label', msg);
+				elem.setAttribute('class', 'copy-btn icon-clipboard1');
+				setTimeout(function() {
+					elem.setAttribute('class', 'copy-btn icon-paste');
+				}, 2000);
+			}
+
+			clipboard.on('success', function(e) {
+			    e.clearSelection();
+			    console.info('Action:', e.action);		   
+			    console.info('Trigger:', e.trigger);
+			    showTooltip(e.trigger, 'Copied!');   
+			});
+			
+			clipboard.on('error', function(e) {
+			    console.error('Action:', e.action);
+			    console.error('Trigger:', e.trigger);
+			});
+		}
+		
+		(function copyCode(){
+			if ($('.layout-post').length) {
+			    preprocessing();
+			    copy();
+			} 
+		})();
+	</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+
+
+<script src="/plugin/fancybox/jquery.fancybox.js"></script>
+
+
+<script type="text/javascript">
+	(function gallerySet(){
+		let titleID = $('.article-title a'),
+			imageID = $('.article-content img'),
+			videoID = $('.article-content video');
+		
+		let postTitle = titleID.text() ? titleID.text() : "No post title!";
+		
+		imageID.each(function() {
+			let imgPath = $(this).attr('src'),
+				imgTitle = $(this).attr('alt') ? $(this).attr('alt') : "No image description!";
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox="gallery" data-caption="《 ' + postTitle + ' 》' + imgTitle + '"href="' + imgPath + '"> </a>');
+		});
+		
+		videoID.each(function() {
+			let videoPath = $(this).attr('src');
+		
+			//给每个匹配的<img>元素打包, 即添加父元素<a>
+			$(this).wrap('<a data-fancybox href=" ' + videoPath + ' "> </a>');
+		});
+		
+		//TODO：支持html5 video
+
+		if($('#layout-post').length) {
+			$('[data-fancybox="gallery"]').fancybox({
+				loop: true,
+				buttons: [
+					"zoom",
+					"share",
+					"slideShow",
+					"fullScreen",
+					//"download",
+					"thumbs",
+					"close"
+				],
+				protect: true
+			});
+		}
+	})();
+</script>
+		</main>
+
+		<!--footer-->
+		<footer>
+	<div id="navigation-show">
+		<ul id="global-nav">
+	
+		<li class="menu-home">
+			<a href="/" class="menu-item-home" target="_blank">主页</a>
+		</li>
+		
+	
+		<li class="menu-archive">
+			<a href="/archives" class="menu-item-archive" target="_blank">归档</a>
+		</li>
+		
+	
+		<li class="menu-categories">
+			<a href="/categories" class="menu-item-categories" target="_blank">分类</a>
+		</li>
+		
+	
+		<li class="menu-tags">
+			<a href="/tags" class="menu-item-tags" target="_blank">标签</a>
+		</li>
+		
+	
+		<li class="menu-about">
+			<a href="/about" class="menu-item-about" target="_blank">关于</a>
+		</li>
+		
+	
+		<li class="menu-gallery">
+			<a href="/gallery" class="menu-item-gallery" target="_blank">相册</a>
+		</li>
+		
+	
+
+	
+</ul>
+	</div>
+
+	<div class="copyright">
+		<p>
+			 
+				&copy;2017 - 2020, content by Sariay. All Rights Reserved.
+			
+			
+				<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.
+			
+		</p>
+		<p>
+			
+
+	<!-- busuanzi -->
+	<!-- busuanzi -->
+
+
+
+			<a href="javascript:zh_tran('s');" class="zh_click" id="zh_click_s">简体</a> 
+			<a href="javascript:zh_tran('t');" class="zh_click" id="zh_click_t">繁體</a>				
+		</p>
+		<p><a href="http://beian.miit.gov.cn" target="_blank" rel="noopener">冀ICP备19008623号-1</a></p>
+	</div>		
+</footer>
+		
+
+<!-- love effect -->
+
+
+<!-- back to top -->
+
+	<div id="totop">
+	<span class="icon-circle-up"></span>
+</div>
+
+
+
+<!-- site analysis -->
+
+
+	<!-- site-analysis -->
+	
+	
+	
+	
+	
+ 
+
+<!-- leancloud -->
+
+
+	<!-- leancloud -->
+	<!--
+	时间：2018-11-27
+	描述：
+		文章访问量：visitors
+		文章喜欢量：likes	
+		文章排行榜：topNPost
+		其他得说明：
+			01-Cookie相关的函数 
+				https://blog.csdn.net/somehow1002/article/details/78511541（Author：somehow1002）
+			02-visitors相关的函数 
+				https://blog.csdn.net/u013553529/article/details/63357382（Author：爱博客大伯）
+				https://notes.doublemine.me/2015-10-21-为NexT主题添加文章阅读量统计功能.html（Author：夏末）
+			03-topNPost相关的函数
+				https://hoxis.github.io/hexo-next-read-rank.html（Author：hoxis）
+			04-likes相关的函数，
+				参考了01 & 02进行简单的设计与实现
+-->
+
+
+	
+
+  
+
+
+
+<script src="/plugin/chinese/chinese.js"></script>
+<script src="/plugin/imagelazyloader/yall.min.js"></script>
+<script src="/plugin/imageloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/plugin/nicescroll/jquery.nicescroll.js"></script>
+<script src="/plugin/resizediv/resizediv.js"></script>
+<script src="/js/main.js"></script>
+
+	</body>	
+</html>
