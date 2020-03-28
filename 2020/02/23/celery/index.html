@@ -206,6 +206,19 @@
 		插件作者：KELEN
 		插件来源: https://github.com/KELEN/katelog
 -->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
 	 
 
 <div class="layout-post">
@@ -231,7 +244,7 @@
 
 	<a href="/2020/02/23/celery/" itemprop="url">
 		<time datetime="2020-02-23T14:24:04.000Z" itemprop="dateUpdated">
-	  		2020-02-23
+	  		2020-03-28
 	  </time>
 	</a> 
 
@@ -239,7 +252,18 @@
 
 			</span>
 			<span>
-						
+				
+	<i class="icon-price-tags"></i>
+	
+		<a href="/tags/python/" class=" ">
+			python
+		</a>
+	
+		<a href="/tags/%E5%9F%BA%E7%A1%80/" class=" ">
+			基础
+		</a>
+	
+		
 			</span>
 			
 			
@@ -249,7 +273,19 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-				
+			<h3 id="Celery-分布式任务队列"><a href="#Celery-分布式任务队列" class="headerlink" title="Celery 分布式任务队列"></a>Celery 分布式任务队列</h3><p>Celery 是一款非常简单、灵活、可靠的分布式系统，可用于处理大量消息，并且提供了一整套操作此系统的一系列工具。<br>Celery 是一款消息队列工具，可用于处理实时数据以及任务调度。</p>
+<p>任务队列的输入是一个称为任务的工作单元，有专门的工作进行不断的监视任务队列，进行执行新的任务工作。<br>Celery 通过消息机制进行通信，通常使用中间人（Broker）作为客户端和职程（Worker）调节。启动一个任务，客户端向消息队列发送一条消息，然后中间人（Broker）将消息传递给一个职程（Worker），最后由职程（Worker）进行执行中间人（Broker）分配的任务。<br>Celery 可以有多个职程（Worker）和中间人（Broker），用来提高Celery的高可用性以及横向扩展能力。</p>
+<h3 id="版本要求"><a href="#版本要求" class="headerlink" title="版本要求"></a>版本要求</h3><p>Celery 4.0 运行：<br>    - Python ❨2.7,3.4,3.5❩<br>    - PyPy ❨5.4,5.5❩</p>
+<h3 id="选择中间人Broker"><a href="#选择中间人Broker" class="headerlink" title="选择中间人Broker"></a>选择中间人Broker</h3><pre><code>- RabbitMQ：RabbitMQ是实现了高级消息队列协议（AMQP）的开源消息代理软件（亦称面向消息的中间件）。RabbitMQ可以说是首选。
+- Redis: Redis（Remote Dictionary Server )，即远程字典服务，是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库,选用redis可能会有数据掉电丢失情况</code></pre><h3 id="安装celery"><a href="#安装celery" class="headerlink" title="安装celery"></a>安装celery</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#注意python版本和celery版本对应</span></span><br><span class="line"><span class="comment">#Celery 4.0 运行：支持 Python2.7 的最后一个版本，从下一个版本Celery5.x开始，需要Python3.5或更高的版本。</span></span><br><span class="line"><span class="comment">#Python 2.6：Celery 3.1 或更早版本。</span></span><br><span class="line"><span class="comment">#Python 2.5：Celery 3.0 或更早版本。</span></span><br><span class="line"><span class="comment">#Python 2.4：Celery 2.2 或更早版本。</span></span><br><span class="line"></span><br><span class="line">pip install celery</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用celery"><a href="#使用celery" class="headerlink" title="使用celery"></a>使用celery</h3><p>创建<code>task.py</code>来运行第一个celery,选择redis作为中间broker,虽然redis作为中间人会有掉电丢失的情况，但是redis作为练习比rabbitmq方便快速很多。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第一个参数为当前模块的名称，只有在 __main__ 模块中定义任务时才会生产名称。</span><br><span class="line">第二个参数为中间人（Broker）的链接 URL ，实例中使用的 RabbitMQ（Celery默认使用的也是RabbitMQ）。</span><br><span class="line">创建了一个名称为 add 的任务，返回的俩个数字的和。</span><br><span class="line"><span class="keyword">from</span> celery <span class="keyword">import</span> Celery</span><br><span class="line">app = Celery(<span class="string">'tasks'</span>, broker=<span class="string">'redis://localhost//'</span>)</span><br><span class="line"><span class="meta">@app.task</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x + y</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行-Celery"><a href="#运行-Celery" class="headerlink" title="运行 Celery"></a>运行 Celery</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">celery -A tasks worker --loglevel=info</span><br></pre></td></tr></table></figure>
+
+<p><img src="e:/66in.site/myblog/source/_posts/celery.md-202032895638.png" alt="celery.md-202032895638"></p>
+	
 		</div>
 		
 		<div id="current-post-cover" data-scr="/img/cart_cover.jpg"></div>
@@ -293,29 +329,6 @@
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/03/21/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" title="将wsl升级为wsl2">
-								将wsl升级为wsl2			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								三月 21日, 2020				
-							</p>
-							<p class="relate-post-content">
-								WSL是什么
-Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行原生Linux二进制可执行文件（ELF格式）的兼容层。它是由微软与Canonical公司合作开发，其目标是使纯正的...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/03/21/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" title="将wsl升级为wsl2">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="将wsl升级为wsl2"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
 							<a class="relate-post-title" href="/2020/02/26/python%E5%8D%8F%E7%A8%8B/" title="python协程">
 								python协程			
 							</a>
@@ -333,6 +346,121 @@ Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行�
 							<a href="/2020/02/26/python%E5%8D%8F%E7%A8%8B/" title="python协程">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python协程"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/02/23/python%E7%BA%BF%E7%A8%8B%E3%80%81%E8%BF%9B%E7%A8%8B/" title="python线程、进程和协程">
+								python线程、进程和协程			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2020				
+							</p>
+							<p class="relate-post-content">
+								python线程有很多的场景中的事情是同时进行的，比如刷微博的时候我们可以听歌；在程序中如果我们顺序执行程序的话，程序智能按照先后顺序进行执行，如果启用多线程，我们的程序可以同时执行多个函数，变相时节约时间的。
+单线程情况下12345...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/02/23/python%E7%BA%BF%E7%A8%8B%E3%80%81%E8%BF%9B%E7%A8%8B/" title="python线程、进程和协程">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python线程、进程和协程"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2017/05/23/python%E8%A3%85%E9%A5%B0%E5%99%A8/" title="python装饰器">
+								python装饰器			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								五月 23日, 2017				
+							</p>
+							<p class="relate-post-content">
+								python中的闭包了解装饰器首先我们需要知道python的闭包
+1、何为闭包
+闭包就是能够读取其他函数内部变量的函数。例如在javascript中，只有函数内部的子函数才能读取局部变量，所以闭包可以理解成“定义在一个函数内部的函数“...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2017/05/23/python%E8%A3%85%E9%A5%B0%E5%99%A8/" title="python装饰器">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python装饰器"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2017/02/16/python%E7%9A%84%E8%BE%93%E5%85%A5/" title="python的输入">
+								python的输入			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 16日, 2017				
+							</p>
+							<p class="relate-post-content">
+								python输入-读取命令行获取简单命令行数据Python启动时，命令行放置在列表sys.argv中，第一个元素是脚本的名称，后续项是启动脚本时添加的命令。编写脚本 sysoption.py
+1234import sysoption ...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2017/02/16/python%E7%9A%84%E8%BE%93%E5%85%A5/" title="python的输入">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python的输入"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2018/02/16/python%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" title="python数学运算">
+								python数学运算			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 16日, 2018				
+							</p>
+							<p class="relate-post-content">
+								python数学运算
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2018/02/16/python%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" title="python数学运算">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python数学运算"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2020/03/21/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" title="将wsl升级为wsl2">
+								将wsl升级为wsl2			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								三月 21日, 2020				
+							</p>
+							<p class="relate-post-content">
+								WSL是什么
+Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行原生Linux二进制可执行文件（ELF格式）的兼容层。它是由微软与Canonical公司合作开发，其目标是使纯正的...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2020/03/21/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" title="将wsl升级为wsl2">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="将wsl升级为wsl2"/>
 							</a>
 						</div>
 					</li>												
@@ -405,29 +533,6 @@ Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行�
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/02/23/python%E7%BA%BF%E7%A8%8B%E3%80%81%E8%BF%9B%E7%A8%8B/" title="python线程、进程和协程">
-								python线程、进程和协程			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								二月 23日, 2020				
-							</p>
-							<p class="relate-post-content">
-								python线程有很多的场景中的事情是同时进行的，比如刷微博的时候我们可以听歌；在程序中如果我们顺序执行程序的话，程序智能按照先后顺序进行执行，如果启用多线程，我们的程序可以同时执行多个函数，变相时节约时间的。
-单线程情况下12345...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/02/23/python%E7%BA%BF%E7%A8%8B%E3%80%81%E8%BF%9B%E7%A8%8B/" title="python线程、进程和协程">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python线程、进程和协程"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
 							<a class="relate-post-title" href="/2020/02/23/dockerfile%E5%8F%82%E6%95%B0/" title="dockerfile参数">
 								dockerfile参数			
 							</a>
@@ -444,74 +549,6 @@ Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行�
 							<a href="/2020/02/23/dockerfile%E5%8F%82%E6%95%B0/" title="dockerfile参数">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="dockerfile参数"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/02/19/docker%E6%8C%87%E4%BB%A4%E9%9B%86%E5%90%88/" title="docker常用指令集合">
-								docker常用指令集合			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								二月 19日, 2020				
-							</p>
-							<p class="relate-post-content">
-								
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/02/19/docker%E6%8C%87%E4%BB%A4%E9%9B%86%E5%90%88/" title="docker常用指令集合">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="docker常用指令集合"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2018/02/16/python%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" title="python数学运算">
-								python数学运算			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								二月 16日, 2018				
-							</p>
-							<p class="relate-post-content">
-								python数学运算
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2018/02/16/python%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" title="python数学运算">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python数学运算"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2017/05/23/python%E8%A3%85%E9%A5%B0%E5%99%A8/" title="python装饰器">
-								python装饰器			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								五月 23日, 2017				
-							</p>
-							<p class="relate-post-content">
-								python中的闭包了解装饰器首先我们需要知道python的闭包
-1、何为闭包
-闭包就是能够读取其他函数内部变量的函数。例如在javascript中，只有函数内部的子函数才能读取局部变量，所以闭包可以理解成“定义在一个函数内部的函数“...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2017/05/23/python%E8%A3%85%E9%A5%B0%E5%99%A8/" title="python装饰器">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python装饰器"/>
 							</a>
 						</div>
 					</li>												
