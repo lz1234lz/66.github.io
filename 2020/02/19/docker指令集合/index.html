@@ -206,6 +206,19 @@
 		插件作者：KELEN
 		插件来源: https://github.com/KELEN/katelog
 -->
+
+	
+		<div class="layout-toc">
+			<div id="layout-toc">
+				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+			</div>
+		</div>
+
+		
+<script src="/plugin/toc/katelog.min.js"></script>
+
+
+		
 	 
 
 <div class="layout-post">
@@ -231,7 +244,7 @@
 
 	<a href="/2020/02/19/docker%E6%8C%87%E4%BB%A4%E9%9B%86%E5%90%88/" itemprop="url">
 		<time datetime="2020-02-19T02:10:46.000Z" itemprop="dateUpdated">
-	  		2020-02-23
+	  		2020-03-28
 	  </time>
 	</a> 
 
@@ -239,7 +252,14 @@
 
 			</span>
 			<span>
-						
+				
+	<i class="icon-price-tags"></i>
+	
+		<a href="/tags/docker/" class=" ">
+			docker
+		</a>
+	
+		
 			</span>
 			
 			
@@ -249,7 +269,24 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-				
+			<h3 id="docker-镜像操作指令"><a href="#docker-镜像操作指令" class="headerlink" title="docker 镜像操作指令"></a>docker 镜像操作指令</h3><p>查看已经拉取的镜像</p>
+<blockquote>
+<p>docker images<br>NAME: 镜像仓库源的名称<br>DESCRIPTION: 镜像的描述<br>OFFICIAL: 是否 docker 官方发布<br>STARS: 表示点赞、喜欢的数量。<br>AUTOMATED: 自动构建。</p>
+</blockquote>
+<p><img src="http://images.66in.site/66insite/20200328165633.png" alt="20200328165633"></p>
+<p>搜索镜像</p>
+<blockquote>
+<p>docker search [OPTIONS] container<br><img src="http://images.66in.site/66insite/20200328170109.png" alt="20200328170109"><br>条件搜索–filter<br>-f, –filter filter   过滤条件当前支持</p>
+<pre><code>* stars 星星数量
+* is-automated 是否为自动构建
+* is-official 是否为官方镜像</code></pre></blockquote>
+<blockquote>
+<p>–format string   自己构建的输出模板<br>–limit int       搜索结果数量（默认25）<br>–no-trunc        不截断输出</p>
+</blockquote>
+<blockquote>
+<p>搜索大于600星的容器 docker search –filter=stars=600 mysql<br>搜索官方镜像 docker search –filter is-official=true mysql<br>搜索自动构建容器 docker search –filter is-automated=true mysql<br><img src="http://images.66in.site/66insite/20200328171638.png" alt="20200328171638"></p>
+</blockquote>
+	
 		</div>
 		
 		<div id="current-post-cover" data-scr="/img/cart_cover.jpg"></div>
