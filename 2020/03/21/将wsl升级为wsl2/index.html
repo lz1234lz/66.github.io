@@ -244,7 +244,7 @@
 
 	<a href="/2020/03/21/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" itemprop="url">
 		<time datetime="2020-03-21T00:50:33.000Z" itemprop="dateUpdated">
-	  		2020-03-21
+	  		2020-03-28
 	  </time>
 	</a> 
 
@@ -286,15 +286,15 @@
 </ol>
 <h4 id="也可以通过以下两条指令开启"><a href="#也可以通过以下两条指令开启" class="headerlink" title="也可以通过以下两条指令开启"></a>也可以通过以下两条指令开启</h4><p>使用管理员权限打开<code>powershell</code></p>
 <p>打开<code>Hyper-V</code>虚拟化和<code>wsl</code></p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#开启虚拟化</span><br><span class="line">Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform</span><br><span class="line">#开启Linux子系统</span><br><span class="line">Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#开启虚拟化</span></span><br><span class="line">Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform</span><br><span class="line"><span class="comment">#开启Linux子系统</span></span><br><span class="line">Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux</span><br></pre></td></tr></table></figure>
 
 <h3 id="安装Linux发行版"><a href="#安装Linux发行版" class="headerlink" title="安装Linux发行版"></a>安装Linux发行版</h3><p>打开我们的商店，搜索<code>wsl</code>，然后我们可以看到各种Linux发行版，选择一个进行安装</p>
 <h3 id="将wsl升级为wsl2"><a href="#将wsl升级为wsl2" class="headerlink" title="将wsl升级为wsl2"></a>将wsl升级为wsl2</h3><p>wsl和wsl2是可以共存的，如果想要更加完整的Linux体验可以将wsl升级为wsl2</p>
 <p>首选我们需要查看安装的Linux发行版<br><code>wsl -l</code></p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#使用<span class="built_in">cmd</span>查看我们安装的Linux发行版</span><br><span class="line">wsl -l</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用cmd查看我们安装的Linux发行版</span></span><br><span class="line">wsl -l</span><br></pre></td></tr></table></figure>
 
 <p>通过指令将wsl升级为wsl2<br><code>wsl --set-version &lt;Linux&gt; 2</code></p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#我的Linux子系统为Ubuntu <span class="number">18</span>.<span class="number">04</span></span><br><span class="line">wsl --<span class="built_in">set</span>-version Ubuntu <span class="number">18</span>.<span class="number">04</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#我的Linux子系统为Ubuntu 18.04</span></span><br><span class="line">wsl --<span class="built_in">set</span>-version Ubuntu 18.04 2</span><br></pre></td></tr></table></figure>
 
 <p>可能会遇到升级失败，是因为Windows升级了Linux内核，忘记截图了。<br>使用<a href="https://docs.microsoft.com/zh-cn/windows/wsl/wsl2-kernel" target="_blank" rel="noopener">升级内核链接</a>对内核进行升级，再次输入命令就可以转换完成</p>
 <h3 id="默认启用wsl2"><a href="#默认启用wsl2" class="headerlink" title="默认启用wsl2"></a>默认启用wsl2</h3><p>如果更加喜欢wsl2可以用<code>wsl --set-default-version 2</code>指令，以后安装的Linux将为wsl2版本。</p>
