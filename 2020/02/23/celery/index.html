@@ -305,7 +305,11 @@
 <p>使用<code>r.status</code>可以知道我们进程的运行结果<br><img src="http://images.66in.site/66insite/20200328153126.png" alt="20200328153126"></p>
 <p>当然Windows下运行celery会有一些问题,无法获取结果，一直处于<code>PEDING</code>，使用这个指令<code>-P Threads</code> 或者<code>--pool=solo</code>(此指令将会在单线程模式下运行)可以使celery获取到结果</p>
 <blockquote>
-<p>参考关于问题的讨论： <a href="https://github.com/celery/celery/issues/2146" target="_blank" rel="noopener">‘github’</a><br><a href="https://github.com/celery/celery/issues/2428" target="_blank" rel="noopener">‘github’</a><br><a href="http://stackoverflow.com/questions/25495613/celery-getting-started-not-able-to-retrieve-results-always-pending?rq=1" target="_blank" rel="noopener">‘stackoverflow’</a><br>可以看到我们的程序已经成功运行<code>r.status</code>显示<code>SUCCESS</code>，并且获得了结果。<br><img src="http://images.66in.site/66insite/20200328154047.png" alt="20200328154047"><br>通过<code>r.get()</code>可以获取到结果，也可以通过运行id从backend获取到我们的结果<br>r.get()<br><img src="http://images.66in.site/66insite/20200328154428.png" alt="20200328154428"><br>backend<br><img src="http://images.66in.site/66insite/20200328154514.png" alt="20200328154514"><br>这就是celery最简单的使用方法了。我们可以异步的处理一些消息请求。</p>
+<p>参考关于问题的讨论： <a href="https://github.com/celery/celery/issues/2146" target="_blank" rel="noopener">‘github’</a><br><a href="https://github.com/celery/celery/issues/2428" target="_blank" rel="noopener">‘github’</a><br><a href="http://stackoverflow.com/questions/25495613/celery-getting-started-not-able-to-retrieve-results-always-pending?rq=1" target="_blank" rel="noopener">‘stackoverflow’</a></p>
+</blockquote>
+<p>可以看到我们的程序已经成功运行<code>r.status</code>显示<code>SUCCESS</code>，并且获得了结果。<br><img src="http://images.66in.site/66insite/20200328154047.png" alt="20200328154047"><br>通过<code>r.get()</code>可以获取到结果，也可以通过运行id从backend获取到我们的结果</p>
+<blockquote>
+<p>r.get()<br><img src="http://images.66in.site/66insite/20200328154428.png" alt="20200328154428"><br>backend<br><img src="http://images.66in.site/66insite/20200328154514.png" alt="20200328154514"><br>这就是celery最简单的使用方法了。我们可以异步的处理一些消息请求。</p>
 </blockquote>
 	
 		</div>
