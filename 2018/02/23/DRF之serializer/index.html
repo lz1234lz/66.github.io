@@ -13,7 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      dockerfile参数 | 66insite
+      DRF之serializer | 66insite
     
   </title>
   <meta name="author" content="happy Liang">
@@ -83,7 +83,7 @@
 	<!-- Page title -->
 	<p>
 		
-			「dockerfile参数」
+			「DRF之serializer」
 		
 	</p>
 
@@ -206,27 +206,14 @@
 		插件作者：KELEN
 		插件来源: https://github.com/KELEN/katelog
 -->
-
-	
-		<div class="layout-toc">
-			<div id="layout-toc">
-				<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
-			</div>
-		</div>
-
-		
-<script src="/plugin/toc/katelog.min.js"></script>
-
-
-		
 	 
 
 <div class="layout-post">
 	<div id="layout-post">
 		<div class="article-title">
 			
-	<a href="/2020/02/23/dockerfile%E5%8F%82%E6%95%B0/" itemprop="url">
-		dockerfile参数
+	<a href="/2018/02/23/DRF%E4%B9%8Bserializer/" itemprop="url">
+		DRF之serializer
 	</a>
 
 		</div>
@@ -242,9 +229,9 @@
 
 	更新于
 
-	<a href="/2020/02/23/dockerfile%E5%8F%82%E6%95%B0/" itemprop="url">
-		<time datetime="2020-02-23T14:22:41.000Z" itemprop="dateUpdated">
-	  		2020-03-28
+	<a href="/2018/02/23/DRF%E4%B9%8Bserializer/" itemprop="url">
+		<time datetime="2018-02-23T14:26:01.000Z" itemprop="dateUpdated">
+	  		2020-04-02
 	  </time>
 	</a> 
 
@@ -252,14 +239,7 @@
 
 			</span>
 			<span>
-				
-	<i class="icon-price-tags"></i>
-	
-		<a href="/tags/docker/" class=" ">
-			docker
-		</a>
-	
-		
+						
 			</span>
 			
 			
@@ -269,69 +249,7 @@
 		</div>
 
 		<div class="article-content" id="article-content">
-			<h3 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h3><p>Dockerfile 是一个用来构建镜像的文本文件，文本内容包含了一条条构建镜像所需的指令和说明</p>
-<h4 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h4><ul>
-<li>Dockerfile文件名首字母必须大写</li>
-<li>Dockerfile整体就两类语句组成，注释和指令（#进行注释）</li>
-<li>Dockerfile指令不区分大小写</li>
-<li>Dockerfile中第一个非注释行必须是FROM指令，用来指定制作当前镜像依据的是哪个基础镜像</li>
-<li>Dockerfile中指令按顺序从上至下依次执行</li>
-</ul>
-<h3 id="Dockerfile指令"><a href="#Dockerfile指令" class="headerlink" title="Dockerfile指令"></a>Dockerfile指令</h3><ul>
-<li><p><code>FROM</code>：FROM指令必须为Dockerfile文件开篇的第一个非注释行，用于指定构建镜像所使用的基础镜像，后续的指令运行都要依靠此基础镜像所提供的的环境，格式为<code>FROM &lt;Repository&gt;[:&lt;Tag&gt;]</code>或<code>FROM &lt;Repository&gt;@&lt;Digest&gt;</code>，例如<code>FROM centos</code></p>
-</li>
-<li><p><code>MAINTAINER</code>：☞改镜像维护者信息</p>
-</li>
-<li><p><code>WORKDIR</code>：指以后命令的工作目录，直到遇到下一个<code>WORKDIR</code><br>注意：当设置为 <code>WORKDIR a</code> <code>WORKDIR b</code>链接时，工作目录将为<code>/a/b</code><br><img src="http://images.66in.site/66insite/20200328224830.png" alt="20200328224830"><br><img src="http://images.66in.site/66insite/20200328225515.png" alt="20200328225515"></p>
-</li>
-<li><p><code>ENV</code>: 为镜像定义所需的环境变量，并可被ENV指令后面的其它指令所调用。调用格式为<code>$variable_name</code>或者<code>${variable_name}</code></p>
-</li>
-<li><p><code>ARG</code>: ARG命令同EVN类似，也是指定一个变量，但不同的是，ENV指令配合-e参数可以在docker run过程中传参，而使用ARG指令配合–build-arg参数可以在docker build过程中传参</p>
-</li>
-<li><p><code>USER</code>: 用于指定docker build过程中任何RUN、CMD等指令的用户名或者UID</p>
-</li>
-<li><p><code>RUN</code>: 用于指定docker build过程中运行的程序，可以是任何命令,RUN命令必须在FROM后才能使用，使用形式为<code>RUN command</code>或为<code>RUN [&quot;executable&quot;, &quot;param1&quot;, &quot;param2&quot;]</code></p>
-</li>
-<li><p><code>CMD</code>: 指定启动容器的默认要运行的程序，也就是PID为1的进程命令，且其运行结束后容器也会终止。如果不指定，默认是bash。</p>
-<ol>
-<li>CMD指令会被<code>docker run</code>覆盖</li>
-<li>多个CMD指令只有最后一个CMD指令才会生效</li>
-<li>RUN指令运行在docker build的过程中，而CMD指令运行在基于新镜像启动容器（docker run）时。</li>
-</ol>
-</li>
-<li><p><code>ENTRYPOINT</code>: 类似CMD指令的功能，用于为容器指定默认运行程序</p>
-<ol>
-<li>Dockerfile中可以存在多个ENTRYPOINT指令，但仅最后一个生效</li>
-<li>ENTRYPOINT启动的程序不会被docker run命令行指定的参数所覆盖，而且这些命令行参数会被当做参数传递给ENTRYPOINT指令指定的程序</li>
-<li>–entrypoint选项的参数可覆盖ENTRYPOINT指定的默认程序</li>
-</ol>
-</li>
-<li><p><code>COPY</code>: 复制宿主机上的文件到目标镜像中. <code>COPY &lt;src&gt;... &lt;dest&gt;</code></p>
-<ol>
-<li><code>&lt;src&gt;</code>必须是build上下文中的目录，不能是其父目录中的文件</li>
-<li>如果<code>&lt;src&gt;</code>是目录，则其内部的文件或则子目录会被递归复制，但<code>&lt;src&gt;</code>目录本身不会被复制</li>
-<li>如果指定了多个<code>&lt;src&gt;</code>，或者<code>&lt;src&gt;</code>中使用通配符，则<code>&lt;dest&gt;</code>必须是一个目录，且必须以 / 结尾</li>
-<li>如果<code>&lt;dest&gt;</code>事先不存在，它将会被自动创建，包括其父目录路径</li>
-</ol>
-</li>
-<li><p><code>ADD</code>: ADD指令跟COPY类似，不过它还支持使用tar文件和URL路径.</p>
-<ol>
-<li>当拷贝的源文件是tar文件时，会自动展开为一个目录并拷贝进新的镜像中；然而通过URL获取到的tar文件不会自动展开</li>
-<li>主机可以联网的情况下，docker build可以将网络上的某文件引用下载并打包到新的镜像中</li>
-</ol>
-</li>
-<li><p><code>VOLUME</code>: 用于在镜像中创建一个挂载点目录。只能指定容器内的路径，不能指定宿主机的路径。</p>
-</li>
-<li><p><code>EXPOSE</code>: 指定容器中待暴露的端口。比如容器提供的是一个http服务且需要对外提供访问，那就需要指定待暴露80端口，然后在使用此镜像启动容器时搭配 -P 的参数才能将待暴露的状态转换为真正暴露的状态，转换的同时80也会转换成一个随机端口，跟 -p :80一个意思</p>
-<ol>
-<li><code>ENV &lt;key&gt; &lt;value&gt;</code> 一次只能定义一个变量，添加多个值，key后面的值都会被认为变量</li>
-<li><code>ENV &lt;key&gt;=&lt;value&gt;</code> 一次可以定义多个变量</li>
-</ol>
-</li>
-<li><p><code>ONBUILD</code>: 指令在docker build时是不会执行，构建完的镜像在被另一个Dockerfile文件中FROM指令所引用的时才会触发执行</p>
-</li>
-</ul>
-	
+				
 		</div>
 		
 		<div id="current-post-cover" data-scr="/img/cart_cover.jpg"></div>
@@ -349,12 +267,12 @@
 	<span>
 		<a id="totop-post-page">返回顶部</a>
 		
-			<a href="/2020/02/23/python%E7%BA%BF%E7%A8%8B%E3%80%81%E8%BF%9B%E7%A8%8B/" title="python线程、进程和协程" rel="prev">
+			<a href="/2019/02/19/docker%E6%8C%87%E4%BB%A4%E9%9B%86%E5%90%88/" title="docker常用指令集合" rel="prev">
 				&laquo;上一篇
 			</a>
 		
 		
-			<a href="/2020/02/19/docker%E6%8C%87%E4%BB%A4%E9%9B%86%E5%90%88/" title="docker常用指令集合" rel="next">
+			<a href="/2018/02/16/python%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" title="python数学运算" rel="next">
 				下一篇&raquo;
 			</a>
 			
@@ -375,35 +293,38 @@
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/02/19/docker%E6%8C%87%E4%BB%A4%E9%9B%86%E5%90%88/" title="docker常用指令集合">
-								docker常用指令集合			
+							<a class="relate-post-title" href="/2020/03/29/linux%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" title="linux文件操作">
+								linux文件操作			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								二月 19日, 2020				
+								三月 29日, 2020				
 							</p>
 							<p class="relate-post-content">
-								docker 镜像操作指令查看已经拉取的镜像docker images
-搜索镜像NAME: 镜像仓库源的名称DESCRIPTION: 镜像的描述OFFICIAL: 是否 docker 官方发布STARS: 表示点赞、喜欢的数量。AUT...
+								vi
+i对文件进行编辑操作
+esc 进入命令模式
+q退出
+w保存I 行首开始编辑A 行尾编辑a 下一个字符o 上起一行O 下起一行C 剪切到行尾内容并进入编辑cc 整行删除并进入编辑dd 删一行 {num}dd 删几行u  操作错误还...
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2020/02/19/docker%E6%8C%87%E4%BB%A4%E9%9B%86%E5%90%88/" title="docker常用指令集合">				
+							<a href="/2020/03/29/linux%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" title="linux文件操作">				
 								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="docker常用指令集合"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="linux文件操作"/>
 							</a>
 						</div>
 					</li>												
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/03/21/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" title="将wsl升级为wsl2">
+							<a class="relate-post-title" href="/2020/03/01/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" title="将wsl升级为wsl2">
 								将wsl升级为wsl2			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								三月 21日, 2020				
+								三月 1日, 2020				
 							</p>
 							<p class="relate-post-content">
 								WSL是什么
@@ -412,120 +333,9 @@ Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行�
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2020/03/21/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" title="将wsl升级为wsl2">				
+							<a href="/2020/03/01/%E5%B0%86wsl%E5%8D%87%E7%BA%A7%E4%B8%BAwsl2/" title="将wsl升级为wsl2">				
 								
 								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="将wsl升级为wsl2"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/02/26/python%E5%8D%8F%E7%A8%8B/" title="python协程">
-								python协程			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								二月 26日, 2020				
-							</p>
-							<p class="relate-post-content">
-								协程由于由程序主动控制切换，没有线程切换的开销，所以执行效率极高。对于IO密集型任务非常适用，如果是cpu密集型，推荐多进程+协程的方式。
-生成器而Python对协程的支持，是通过Generator实现的，协程是遵循某些规则的生成器。...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/02/26/python%E5%8D%8F%E7%A8%8B/" title="python协程">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python协程"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/02/23/DRF%E4%B9%8Bserializer/" title="DRF之serializer">
-								DRF之serializer			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								二月 23日, 2020				
-							</p>
-							<p class="relate-post-content">
-								
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/02/23/DRF%E4%B9%8Bserializer/" title="DRF之serializer">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="DRF之serializer"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/02/23/jwt-token/" title="jwt-token">
-								jwt-token			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								二月 23日, 2020				
-							</p>
-							<p class="relate-post-content">
-								
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/02/23/jwt-token/" title="jwt-token">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="jwt-token"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/02/23/djangoRestframework/" title="djangoRestframework">
-								djangoRestframework			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								二月 23日, 2020				
-							</p>
-							<p class="relate-post-content">
-								
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/02/23/djangoRestframework/" title="djangoRestframework">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="djangoRestframework"/>
-							</a>
-						</div>
-					</li>												
-			
-					<li>
-						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2020/02/23/celery/" title="celery">
-								celery			
-							</a>
-							<p class="relate-post-date">
-								<i class="fa fa-calendar"></i>
-								二月 23日, 2020				
-							</p>
-							<p class="relate-post-content">
-								Celery 分布式任务队列&#8195;&#8195;Celery 是一款非常简单、灵活、可靠的分布式系统，可用于处理大量消息，并且提供了一整套操作此系统的一系列工具。&#8195;&#8195;Celery 是一款消息队列工具，可...
-							</p>
-						</div>
-
-						<div class="relate-post-cover">
-							<a href="/2020/02/23/celery/" title="celery">				
-								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="celery"/>
 							</a>
 						</div>
 					</li>												
@@ -555,6 +365,99 @@ Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行�
 			
 					<li>
 						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/02/23/djangoRestframework/" title="djangoRestframework">
+								djangoRestframework			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2019				
+							</p>
+							<p class="relate-post-content">
+								
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/02/23/djangoRestframework/" title="djangoRestframework">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="djangoRestframework"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/02/23/celery/" title="celery">
+								celery			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2019				
+							</p>
+							<p class="relate-post-content">
+								Celery 分布式任务队列&#8195;&#8195;Celery 是一款非常简单、灵活、可靠的分布式系统，可用于处理大量消息，并且提供了一整套操作此系统的一系列工具。&#8195;&#8195;Celery 是一款消息队列工具，可...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/02/23/celery/" title="celery">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="celery"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/02/23/dockerfile%E5%8F%82%E6%95%B0/" title="dockerfile参数">
+								dockerfile参数			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 23日, 2019				
+							</p>
+							<p class="relate-post-content">
+								DockerfileDockerfile 是一个用来构建镜像的文本文件，文本内容包含了一条条构建镜像所需的指令和说明
+要求
+Dockerfile文件名首字母必须大写
+Dockerfile整体就两类语句组成，注释和指令（#进行注释）
+D...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/02/23/dockerfile%E5%8F%82%E6%95%B0/" title="dockerfile参数">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="dockerfile参数"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2019/02/19/docker%E6%8C%87%E4%BB%A4%E9%9B%86%E5%90%88/" title="docker常用指令集合">
+								docker常用指令集合			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								二月 19日, 2019				
+							</p>
+							<p class="relate-post-content">
+								docker 镜像操作指令查看已经拉取的镜像docker images
+搜索镜像NAME: 镜像仓库源的名称DESCRIPTION: 镜像的描述OFFICIAL: 是否 docker 官方发布STARS: 表示点赞、喜欢的数量。AUT...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2019/02/19/docker%E6%8C%87%E4%BB%A4%E9%9B%86%E5%90%88/" title="docker常用指令集合">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="docker常用指令集合"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
 							<a class="relate-post-title" href="/2018/02/16/python%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" title="python数学运算">
 								python数学运算			
 							</a>
@@ -577,24 +480,45 @@ Windows Subsystem for Linux（简称WSL）是一个在Windows 10上能够运行�
 			
 					<li>
 						<div class="relate-post-text">
-							<a class="relate-post-title" href="/2017/05/23/python%E8%A3%85%E9%A5%B0%E5%99%A8/" title="python装饰器">
-								python装饰器			
+							<a class="relate-post-title" href="/2017/09/23/jwt-token/" title="jwt-token">
+								jwt-token			
 							</a>
 							<p class="relate-post-date">
 								<i class="fa fa-calendar"></i>
-								五月 23日, 2017				
+								九月 23日, 2017				
 							</p>
 							<p class="relate-post-content">
-								python中的闭包了解装饰器首先我们需要知道python的闭包
-1、何为闭包
-闭包就是能够读取其他函数内部变量的函数。例如在javascript中，只有函数内部的子函数才能读取局部变量，所以闭包可以理解成“定义在一个函数内部的函数“...
+								
 							</p>
 						</div>
 
 						<div class="relate-post-cover">
-							<a href="/2017/05/23/python%E8%A3%85%E9%A5%B0%E5%99%A8/" title="python装饰器">				
+							<a href="/2017/09/23/jwt-token/" title="jwt-token">				
 								
-								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python装饰器"/>
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="jwt-token"/>
+							</a>
+						</div>
+					</li>												
+			
+					<li>
+						<div class="relate-post-text">
+							<a class="relate-post-title" href="/2017/06/26/python%E5%8D%8F%E7%A8%8B/" title="python协程">
+								python协程			
+							</a>
+							<p class="relate-post-date">
+								<i class="fa fa-calendar"></i>
+								六月 26日, 2017				
+							</p>
+							<p class="relate-post-content">
+								协程由于由程序主动控制切换，没有线程切换的开销，所以执行效率极高。对于IO密集型任务非常适用，如果是cpu密集型，推荐多进程+协程的方式。
+生成器而Python对协程的支持，是通过Generator实现的，协程是遵循某些规则的生成器。...
+							</p>
+						</div>
+
+						<div class="relate-post-cover">
+							<a href="/2017/06/26/python%E5%8D%8F%E7%A8%8B/" title="python协程">				
+								
+								<img class="lazy" src="/img/lazy.gif" data-src="/img/cart_cover.jpg" alt="python协程"/>
 							</a>
 						</div>
 					</li>												
